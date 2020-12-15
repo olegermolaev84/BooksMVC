@@ -1,0 +1,72 @@
+#navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #0066FF;
+        border-radius: 20px 5px;
+        width: 550px;
+        text-align: center;
+        background-color: #33ADFF;
+}
+#navbar li { display: inline; }
+#navbar a {
+        color: #000000;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
+}
+#navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #0066FF;
+}
+
+.orange-button{
+    width: 180px;
+    padding: 5px 10px;
+    background: darkorange;
+    border: 1px solid #b8b8b8;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+    font: 14px/1 Arial, sans-serif;
+    text-align: center;
+    margin: 3px;
+}
+
+.validationError{
+	color: red;
+	font: 12px/1 Arial, sans-serif;
+}
+.table-show{
+	margin: 15px;
+	border-collapse: collapse;
+	border: 1px solid grey;
+	min-width: 400px;
+	text-align: left;
+}
+.th-show{
+	padding: 10px;
+	left-border: 1px solid grey;
+	text-align: center;
+}
+.tr-show{
+	padding: 10px;
+	border-collapse: collapse;
+	border: 1px solid grey;
+}
+.td-center{
+	text-align: center;
+}
+.td-fixed-size{
+	min-width:500px;
+}
+
+#booksFilterForm select{
+	width: 95%;
+}
+#booksFilterForm input{
+	width: 90%;
+}

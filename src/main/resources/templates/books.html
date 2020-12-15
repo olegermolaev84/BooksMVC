@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset=UTF-8>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<ul id="navbar">
+  		<li><a href="/authors">Авторы</a></li>
+  		<li><a href="/genres">Жанры</a></li>
+  		<li><a href="/books">Книги</a></li>
+	</ul>
+	
+	<form method="post" th:action = "@{/books}" th:object = "${booksFilterForm}">
+		<table id="booksFilterForm">
+			<tbody>
+				<tr>
+					<td><label>Выбирите автора</label></td>
+					<td>
+    					<select th:field="*{selectedAuthorId}">
+    					<option value="-1">-----</option>
+   						<option th:each="author : *{authors}" th:value="${author.id}" th:text="${author.name}"></option>
+    					</select>
+    				</td>
+				</tr>
+				<tr>
+					<td><label>Выбирите жанр</label></td>
+					<td>
+    					<select th:field="*{selectedGenreId}">
+    					<option value="-1">-----</option>
+   						<option th:each="genre : *{genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+    					</select>
+    				</td>
+				</tr>
+				<tr>
+					<td><label>Года публикации: от </label></td>
+					<td>
+    					<input type="number" th:field="*{minYearBookPublishing}">
+    				</td>
+    				<td><label>до </label></td>
+					<td>
+    					<input type="number" th:field="*{maxYearBookPublishing}">
+    				</td>
+				</tr>
+				<tr>
+					<td><label>Фраза из названия книги </label></td>
+					<td>
+    					<input type="text" th:field="*{nameLike}">
+    				</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="orange-button" type="submit">Показать</button>
+		<br th:if="${#fields.hasErrors('minYearBookPublishing')}">
+		<span class="validationError" th:if="${#fields.hasErrors('minYearBookPublishing')}" th:errors="*{minYearBookPublishing}">Error</span>
+		<br th:if="${#fields.hasErrors('maxYearBookPublishing')}">
+		<span class="validationError" th:if="${#fields.hasErrors('maxYearBookPublishing')}" th:errors="*{maxYearBookPublishing}">Error</span>
+	</form>
+</body>
+</html>

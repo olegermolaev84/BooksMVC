@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset=UTF-8>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<ul id="navbar">
+  		<li><a href="/authors">Авторы</a></li>
+  		<li><a href="/genres">Жанры</a></li>
+  		<li><a href="/books">Книги</a></li>
+	</ul>
+	
+	<form method="post" th:action = "@{/genres}" th:object = "${genres}">
+		<table class="table-show">
+			<th class="th-show"></th>
+			<th class="th-show"></th>
+			<th class="th-show">Название жанра</th>
+			<tbody>
+			 	<tr class="tr-show" th:each="genre, itemStat : *{genres}">
+			 		<td><input type="hidden" th:field="*{genres[__${itemStat.index}__].id}" /></td>
+                    <td><input type="checkbox" th:field="*{genres[__${itemStat.index}__].selected}" /></td>
+                    <td><label th:text="*{genres[__${itemStat.index}__].name}"></label></td>
+                </tr>
+			</tbody>
+		</table>
+		<button class="orange-button" type="submit" name="selectedAction" value="delete">Удалить выбранные</button>
+		<button class="orange-button" type="submit" name="selectedAction" value="update">Редактировать</button>
+	</form>
+	<button class="orange-button" onclick="document.location='/genres/edit'">Добавить жанр</button> 
+	<br><span class=validationError th:unless="${customerMistake == ''}" th:text="${customerMistake}"></span>
+</body>
+</html>

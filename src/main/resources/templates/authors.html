@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset=UTF-8>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<ul id="navbar">
+  		<li><a href="/authors">Авторы</a></li>
+  		<li><a href="/genres">Жанры</a></li>
+  		<li><a href="/books">Книги</a></li>
+	</ul>
+	
+	<form method="post" th:action = "@{/authors}" th:object = "${authors}">
+		<table class="table-show">
+			<thead>
+				<th class="th-show"></th>
+				<th class="th-show"></th>
+				<th class="th-show">Автор</th>
+				<th class="th-show">Дата рождения</th>
+				<th class="th-show">Дата смерти</th>
+			</thead>
+			<tbody>
+			 	<tr class="tr-show" th:each="author, itemStat : *{authors}">
+			 		<td><input type="hidden" th:field="*{authors[__${itemStat.index}__].id}" /></td>
+                    <td><input type="checkbox" th:field="*{authors[__${itemStat.index}__].selected}" /></td>
+                    <td><label th:text="*{authors[__${itemStat.index}__].name}"></label></td>
+                    <td class="td-center"><label th:text="*{authors[__${itemStat.index}__].dateOfBorn}"></label></td>
+                    <td class="td-center"><label th:text="*{authors[__${itemStat.index}__].dateOfDied}"></label></td>
+                </tr>
+			</tbody>
+		</table>
+		<button class="orange-button" type="submit" name="selectedAction" value="delete">Удалить выбранные</button>
+		<button class="orange-button" type="submit" name="selectedAction" value="update">Редактировать</button>
+	</form>
+	<button class="orange-button" onclick="document.location='/authors/edit'">Добавить автора</button>  
+	<br><span class=validationError th:unless="${customerMistake == ''}" th:text="${customerMistake}"></span>
+</body>
+</html>

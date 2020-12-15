@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset=UTF-8>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<ul id="navbar">
+  		<li><a href="/authors">Авторы</a></li>
+  		<li><a href="/genres">Жанры</a></li>
+  		<li><a href="/books">Книги</a></li>
+	</ul>
+	
+	<form method="post" th:action = "@{/authors/edit}" th:object = "${author}">
+		<table>
+			<tbody>
+				<tr>
+				    <td> <label>Имя автора</label>
+        			<td> <input type="text" th:field="*{name}">
+        			<td class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        		</tr>
+        		<tr>
+				    <td> <label>Дата рождения</label>
+        			<td> <input type="date" th:field="*{dateOfBorn}">
+        			<td class="validationError" th:if="${#fields.hasErrors('dateOfBorn')}" th:errors="*{dateOfBorn}">Date of born Error</td>
+        		</tr>
+        		<tr>
+				    <td> <label>Дата смерти</label>
+        			<td> <input type="date" th:field="*{dateOfDied}">
+        			<td class="validationError" th:if="${#fields.hasErrors('dateOfDied')}" th:errors="*{dateOfDied}">Date of died Error</td>
+        			<td> <input type="hidden" th:field="*{id}">
+        			<td> <input type="hidden" th:field="*{existent}">
+        		</tr>
+        		<tr>
+        			<td> <input class="orange-button" type="submit" value="Сохранить"/> </td>
+        		</tr>
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>
