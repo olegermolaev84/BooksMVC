@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Библиотека</title>
+	<meta charset=UTF-8>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<img th:src="@{/images/login.png}"/>
+	<div class="validationError" th:if="${param.error}">
+		Не верный логин и/или пароль
+	</div>
+
+	<form method="POST" th:action="@{/login}">
+		<table><tbody>
+		<tr>
+			<td><label for="username">Логин: </label></td>
+			<td><input type="text" name="username" id="username" /></td>
+		</tr>
+		<tr>
+			<td><label for="password">Пароль: </label></td>
+			<td><input type="password" name="password" id="password" /></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Вход"/></td>
+		</tr>
+	
+		</tbody></table>
+	</form>
+	<p>Или нажмите	<a class="orange-button" th:href="@{/register}">зарегистрироваться</a></p>
+</body>
+</html>

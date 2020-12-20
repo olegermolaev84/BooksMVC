@@ -8,16 +8,18 @@
         text-align: center;
         background-color: #33ADFF;
 }
-#navbar li { display: inline; }
-#navbar a {
+#navbar li, #navbar form { display: inline; }
+#navbar a, #navbar input {
         color: #000000;
         padding: 5px 10px;
         text-decoration: none;
         font-weight: bold;
         display: inline-block;
         width: 100px;
+        border-radius: 20px 5px;
+        background-color: #33ADFF;
 }
-#navbar a:hover {
+#navbar a:hover, #navbar input:hover {
         border-radius: 20px 5px;
         background-color: #0066FF;
 }
@@ -70,3 +72,20 @@
 #booksFilterForm input{
 	width: 90%;
 }
+
+
+#login{
+	position:fixed;
+	top:40%;
+	left:35%;
+	width:250px;
+}
+
+#login table{
+	width: 600px;
+    border: 1px solid green;
+    margin: auto;
+    background: yellow;
+    color: black;
+}
+

@@ -10,6 +10,11 @@
   		<li><a href="/authors">Авторы</a></li>
   		<li><a href="/genres">Жанры</a></li>
   		<li><a href="/books">Книги</a></li>
+  		<li>
+  			<form method="POST" th:action="@{/logout}">
+				<input type="submit" value="Выход"/>
+			</form>
+		</li>
 	</ul>
 	
 	<form method="post" th:action = "@{/authors}" th:object = "${authors}">

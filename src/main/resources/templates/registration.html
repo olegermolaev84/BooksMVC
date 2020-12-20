@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset=UTF-8>
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+	<form id="login" method="post" th:action = "@{/register}" th:object = "${user}">
+		<table>
+			<tbody>
+				<tr>
+				    <td> <label>Логин</label>
+        			<td> <input type="text" th:field="*{username}">
+        			<td class="validationError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</td>
+        		</tr>
+        		<tr>
+        			<td> <label>Пароль</label>
+        			<td> <input type="password" th:field="*{password}">
+        			<td class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</td>
+        		</tr>
+        		<tr>
+        			<td> <label>Повторите пароль</label>
+        			<td> <input type="password" th:field="*{repeatedPassword}">
+        			<td  class=validationError th:unless="${passwordsMatch}">Пароли не совпадают</td>
+        		</tr>
+			</tbody>
+		</table>
+		<input class="orange-button" type="submit" value="Зарегистрироваться"/>
+	</form>
+</body>
+</html>

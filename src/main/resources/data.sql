@@ -1,32 +1,3 @@
-create table genre 
-(id int8 not null, 
-name varchar(256) not null, 
-primary key (id)
-);
-
-create table author (
-id int8 not null, 
-name varchar(256) not null,
-date_of_born date not null,
-date_of_died date,  
-primary key (id)
-);
-
-create table book (
-id int8 not null, 
-name varchar(256) not null, 
-url varchar(256), 
-year_of_publishing int4 not null, 
-genre_id int8 references genre (id), 
-primary key (id)
-);
-
-create table book_author (
-book_id int8 references book (id), 
-author_id int8 references author (id), 
-primary key (book_id, author_id)
-);
-
 INSERT INTO genre VALUES(0, 'Поэмы');
 INSERT INTO genre VALUES(1, 'Стихи');
 INSERT INTO genre VALUES(2, 'Сказки');
@@ -65,3 +36,6 @@ INSERT INTO book        VALUES(9, 'Нос', 'url', 1836, 4);
 INSERT INTO book_author VALUES(9, 1);
 INSERT INTO book        VALUES(10, 'Вечера на хуторе близ Диканьки', 'url', 1832, 4);
 INSERT INTO book_author VALUES(10, 1);
+
+INSERT INTO authority VALUES(0, 'ADMIN_ROLE');
+INSERT INTO authority VALUES(1, 'REGULAR_ROLE');
