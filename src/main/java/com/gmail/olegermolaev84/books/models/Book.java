@@ -1,10 +1,13 @@
 package com.gmail.olegermolaev84.books.models;
 
-import java.util.Set;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,7 +26,8 @@ import lombok.Data;
 public class Book {
 	@Id
 	@Column(name = "id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Size(min=3, max=256, message="Название книги должно быть от 3 до 256 символов")
 	@Column(name="name", length = 256)
@@ -44,10 +48,13 @@ public class Book {
 			  name = "book_author", 
 			  joinColumns = @JoinColumn(name = "book_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors;
+	private List<Author> authors;
 	
 	@Column(name="url", length = 256)
 	private String url;
+	
+	@Transient
+	private String authorsAsString;
 	
 	@Transient
 	private boolean selected;
@@ -64,5 +71,19 @@ public class Book {
 		this.selected = book.selected;
 		this.url = book.url;
 		this.existent = book.existent;
+	}
+	
+	public void convertAuthorsToString() {
+		StringBuilder sb = new StringBuilder();
+		
+		Iterator<Author> iter = authors.iterator();
+		while(iter.hasNext()) {
+			sb.append(iter.next().getName());
+			if(iter.hasNext()) {
+				sb.append(", ");
+			}
+		}
+		
+		authorsAsString = sb.toString();
 	}
 }

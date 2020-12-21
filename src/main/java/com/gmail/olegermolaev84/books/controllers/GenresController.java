@@ -105,7 +105,6 @@ public class GenresController {
 		}
 		
 		if(!genre.isExistent()) {
-			genre.setId(repo.maxId()+1);
 			log.info("Creating new genre:  " + genre.toString());
 			repo.save(genre);
 		}

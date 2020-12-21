@@ -2,8 +2,6 @@ package com.gmail.olegermolaev84.books.models;
 
 import java.util.List;
 
-import javax.validation.constraints.Digits;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -17,12 +15,17 @@ public class BooksFilterForm {
 	
 	// substring which is to be in the books' names
 	private String nameLike;
-	 
-	@Digits(fraction = 0, integer = 4, message="Неправильный формат года в поле 'от'")
-	private Integer minYearBookPublishing;
-	@Digits(fraction = 0, integer = 4, message="Неправильный формат года в поле 'до'")
-	private Integer maxYearBookPublishing;
 	
 	public BooksFilterForm() {
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("BooksFilterForm( ");
+		sb.append("selectedAuthorId=" + selectedAuthorId + ", ");
+		sb.append("selectedGenreId=" + selectedGenreId + ", ");
+		sb.append("nameLike=" + nameLike + ", ");
+		return sb.toString();
 	}
 }

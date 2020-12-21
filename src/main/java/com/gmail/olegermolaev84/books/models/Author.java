@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -24,7 +26,8 @@ import lombok.Data;
 public class Author {
 	@Id
 	@Column(name = "id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Size(min=5, max=256, message="Имя автора должно быть от 5 до 256 символов")
 	@Column(name="name", length = 256)
@@ -59,5 +62,18 @@ public class Author {
 		this.name = author.name;
 		this.selected = author.selected;
 		this.existent = author.existent;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Author( ");
+		sb.append("id=" + id + ", ");
+		sb.append("name=" + name + ", ");
+		sb.append("dateOfBorn=" + dateOfBorn + ", ");
+		sb.append("dateOfDied=" + dateOfDied + ", ");
+		sb.append("selected=" + selected + ", ");
+		sb.append("existent=" + existent + ")");
+		return sb.toString();
 	}
 }

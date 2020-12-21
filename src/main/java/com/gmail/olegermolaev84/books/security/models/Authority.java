@@ -2,6 +2,8 @@ package com.gmail.olegermolaev84.books.security.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +17,8 @@ public class Authority {
 	public final static String REGULAR_ROLE = "REGULAR_ROLE";
 	@Id
 	@Column(name = "id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column(name="authority", length = 15)
 	private String authority;

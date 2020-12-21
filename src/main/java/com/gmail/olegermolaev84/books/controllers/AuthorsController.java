@@ -107,7 +107,6 @@ public class AuthorsController {
 		}
 		
 		if(!author.isExistent()) {
-			author.setId(repo.maxId()+1);
 			log.info("Creating new author: " + author.toString());
 			repo.save(author);
 		}

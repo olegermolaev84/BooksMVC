@@ -39,16 +39,6 @@
     				</td>
 				</tr>
 				<tr>
-					<td><label>Года публикации: от </label></td>
-					<td>
-    					<input type="number" th:field="*{minYearBookPublishing}">
-    				</td>
-    				<td><label>до </label></td>
-					<td>
-    					<input type="number" th:field="*{maxYearBookPublishing}">
-    				</td>
-				</tr>
-				<tr>
 					<td><label>Фраза из названия книги </label></td>
 					<td>
     					<input type="text" th:field="*{nameLike}">
@@ -57,10 +47,29 @@
 			</tbody>
 		</table>
 		<button class="orange-button" type="submit">Показать</button>
-		<br th:if="${#fields.hasErrors('minYearBookPublishing')}">
-		<span class="validationError" th:if="${#fields.hasErrors('minYearBookPublishing')}" th:errors="*{minYearBookPublishing}">Error</span>
-		<br th:if="${#fields.hasErrors('maxYearBookPublishing')}">
-		<span class="validationError" th:if="${#fields.hasErrors('maxYearBookPublishing')}" th:errors="*{maxYearBookPublishing}">Error</span>
+	</form>
+	
+	<form th:if="${showBooks}" method="post" th:action = "@{/books}" th:object = "${books}">
+		<table class="table-show">
+			<thead>
+				<th class="th-show"></th>
+				<th class="th-show"></th>
+				<th class="th-show">Название</th>
+				<th class="th-show">Год публикации</th>
+				<th class="th-show">Жанр</th>
+				<th class="th-show">Авторы</th>
+			</thead>
+			<tbody>
+			 	<tr class="tr-show" th:each="book, itemStat : *{books}">
+			 		<td><input type="hidden" th:field="*{books[__${itemStat.index}__].id}" /></td>
+                    <td><input type="checkbox" th:field="*{books[__${itemStat.index}__].selected}" /></td>
+                    <td><label th:text="*{books[__${itemStat.index}__].name}"></label></td>
+                    <td class="td-center"><label th:text="*{books[__${itemStat.index}__].yearOfPublishing}"></label></td>
+                    <td><label th:text="*{books[__${itemStat.index}__].genre.name}"></label></td>
+                    <td><label th:text="*{books[__${itemStat.index}__].authorsAsString}"></label></td>
+                </tr>
+			</tbody>
+		</table>
 	</form>
 </body>
 </html>
